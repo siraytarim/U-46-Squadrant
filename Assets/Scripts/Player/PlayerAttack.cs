@@ -9,6 +9,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] float bulletSpeed;
     [SerializeField] Transform bulletSpawnPoint;
+    public float bulletCoolDown;
     
     [Header("Enemy")]
     [SerializeField] GameObject Enemy;
@@ -18,10 +19,12 @@ public class PlayerAttack : MonoBehaviour
     [Header("Player")]
     public float attackRange;
     public bool hasShoot;
+
     private void Start()
     {
         hasShoot = false;
     }
+
     private void Update()
     {
         if (!hasShoot)
@@ -35,17 +38,27 @@ public class PlayerAttack : MonoBehaviour
             }
         }
     }
+
     void ShootAtEnemy()
     {
         var bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
-        bullet.GetComponent<Rigidbody>().velocity = bulletSpawnPoint.forward * bulletSpeed;
+        Vector3 targetPosition = Enemy.transform.position;
+
+        Vector3 direction = (targetPosition - bulletSpawnPoint.position).normalized;
+
+        bullet.GetComponent<Rigidbody>().velocity = direction * bulletSpeed;
         ResetAttack();
     }
+
     void ResetAttack()
     {
         hasShoot = true;
-        Invoke("ShootAtEnemy",2f);
-    } 
+        Invoke("AllowShooting" ,bulletCoolDown);
+    }
+    void AllowShooting()
+    {
+        hasShoot = false;
+    }
     private void OnDrawGizmosSelected()
     {
         Gizmos.color=Color.red;
