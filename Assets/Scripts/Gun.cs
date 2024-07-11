@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class Gun : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class Gun : MonoBehaviour
     private float nextTimetoFire = 0f;
     public GameObject muzzle;
     public float range = 100f;
-    public ParticleSystem muzzleEffect;
+    public VisualEffect muzzleEffect;
     private GameObject Enemy;
     void Awake()
     {
