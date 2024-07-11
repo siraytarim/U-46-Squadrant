@@ -41,12 +41,7 @@ public class PlayerAttack : MonoBehaviour
 
     void ShootAtEnemy()
     {
-        var bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
-        Vector3 targetPosition = Enemy.transform.position;
-
-        Vector3 direction = (targetPosition - bulletSpawnPoint.position).normalized;
-
-        bullet.GetComponent<Rigidbody>().velocity = direction * bulletSpeed;
+        Gun.Instance.Shoot();
         ResetAttack();
     }
 

@@ -7,7 +7,9 @@ public class PlanetTurn : MonoBehaviour
 {
     public static PlanetTurn Instance;
     [SerializeField] private float rotationSpeed;
-    private Vector3 rotationDirection;
+    private Vector3 rotationDirection, moveDirection;
+    public float rotationMultiplier;
+    
 
     void Awake()
     {
@@ -20,13 +22,14 @@ public class PlanetTurn : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    private void Update()
+    private void FixedUpdate()
     {
-        if (rotationDirection != Vector3.zero)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(rotationDirection);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-        }
+        float horizontal = Input.GetAxis("Horizontal");
+
+        float turnSpeed = rotationSpeed + horizontal * rotationMultiplier;
+
+        // Planeti döndür
+        transform.Rotate(0f, 0f, turnSpeed * Time.deltaTime);
     }
     
     public void SetRotationDirection(Vector3 direction)

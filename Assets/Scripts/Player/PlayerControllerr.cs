@@ -10,6 +10,9 @@ public class PlayerControllerr : MonoBehaviour
     [SerializeField] private float turnSpeed;
     [SerializeField] private float verticalSpeed;
     Rigidbody rb;
+    public float gravity = -9.81f;
+    private float velocity;
+    private Vector3 direction;
 
     private void Start()
     {
@@ -19,12 +22,14 @@ public class PlayerControllerr : MonoBehaviour
 
     private void Update()
     {
+        velocity += gravity * 10 * Time.deltaTime;
+        direction.y = velocity;
         //karalter hareketi
            float horizontal = Input.GetAxis("Horizontal");
 
         // Karakterin hareket yönünü belirle
         Vector3 moveDirection = transform.forward * verticalSpeed + transform.right * horizontal * turnSpeed;
-        controller.Move(moveDirection * Time.deltaTime);
+        controller.Move( moveDirection * Time.deltaTime);
 
         if (moveDirection != Vector3.zero)
         {
