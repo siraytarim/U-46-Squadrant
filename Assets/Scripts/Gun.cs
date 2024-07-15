@@ -9,9 +9,9 @@ public class Gun : MonoBehaviour
     public static Gun Instance; 
     private float nextTimetoFire = 0f;
     public GameObject muzzle;
-    public float range = 100f;
+    [SerializeField] float range;
     public VisualEffect muzzleEffect;
-    private GameObject Enemy;
+    [SerializeField] private float damage;
     void Awake()
     {
         if (Instance == null)
@@ -32,13 +32,14 @@ public class Gun : MonoBehaviour
     public void Shoot()
     {
         muzzleEffect.Play();
-        Debug.Log("shooting");
+        //Debug.Log("shooting");
         RaycastHit hit;
         if (Physics.Raycast(muzzle.transform.position, muzzle.transform.forward, out hit, range))
         {
             if (hit.collider.CompareTag(("Enemy")))
             {
-                Destroy(Enemy);
+                Debug.Log("vurdu");
+                GetDamage.Instance.TakeDamage(damage);
             }
         }
         

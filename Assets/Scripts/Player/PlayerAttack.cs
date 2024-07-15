@@ -12,7 +12,6 @@ public class PlayerAttack : MonoBehaviour
     public float bulletCoolDown;
     
     [Header("Enemy")]
-    [SerializeField] GameObject Enemy;
     [SerializeField] private LayerMask whatIsEnemy;
     public bool enemyInattackRange;
     

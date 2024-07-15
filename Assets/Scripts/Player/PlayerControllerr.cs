@@ -5,13 +5,15 @@ using UnityEngine;
 
 public class PlayerControllerr : MonoBehaviour
 {
-    [Header("Player")] [SerializeField] private CharacterController controller;
+    [Header("Player")] 
+    [SerializeField] private CharacterController controller;
+    [SerializeField] private Animator anim;
     [SerializeField] private Transform planet;
     [SerializeField] private float turnSpeed;
     [SerializeField] private float verticalSpeed;
     Rigidbody rb;
-    public float gravity = -9.81f;
-    private float velocity;
+    [SerializeField] float gravity ;
+    private Vector3 velocity;
     private Vector3 direction;
 
     private void Start()
@@ -22,13 +24,18 @@ public class PlayerControllerr : MonoBehaviour
 
     private void Update()
     {
-        velocity += gravity * 10 * Time.deltaTime;
-        direction.y = velocity;
-        //karalter hareketi
+        anim.SetFloat("Vertical",2f);
+        anim.SetFloat("Horizontal",2f);
 
-        // Karakterin hareket yönünü belirle
         Vector3 moveDirection = transform.forward * verticalSpeed;
-        controller.Move( moveDirection * Time.deltaTime);
+        
+        if (controller.isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2f;
+        }
+        velocity.y += gravity * Time.deltaTime;
+
+        controller.Move( (moveDirection + velocity) * Time.deltaTime);
 
         if (moveDirection != Vector3.zero)
         {
