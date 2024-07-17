@@ -1,10 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    public static PlayerAttack Instance;
     [Header("Bullet")]
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] float bulletSpeed;
@@ -12,16 +14,42 @@ public class PlayerAttack : MonoBehaviour
     public float bulletCoolDown;
     
     [Header("Enemy")]
-    [SerializeField] private LayerMask whatIsEnemy;
-    public bool enemyInattackRange;
+    [SerializeField] LayerMask whatIsEnemy;
+    public static bool enemyInattackRange;
+    public List<GameObject> Enemies;
+    float distance;
+    float nearestDistance = 1000;
+    public static GameObject nearestOBJ;
     
     [Header("Player")]
     public float attackRange;
     public bool hasShoot;
 
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     private void Start()
     {
         hasShoot = false;
+        GameObject[] foundObjects = GameObject.FindGameObjectsWithTag("Enemy");
+        Enemies.AddRange(foundObjects);
+        for (int i = 0; i < Enemies.Count; i++)
+        {
+            distance = Vector3.Distance(this.transform.position, Enemies[i].transform.position);
+            if (distance < nearestDistance)
+            {
+                nearestOBJ = Enemies[i];
+                nearestDistance = distance;
+            }
+        }
     }
 
     private void Update()
@@ -32,7 +60,6 @@ public class PlayerAttack : MonoBehaviour
 
             if (enemyInattackRange)
             {
-                print("attack range");
                 ShootAtEnemy();
             }
         }

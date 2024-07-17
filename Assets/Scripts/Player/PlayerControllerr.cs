@@ -24,8 +24,8 @@ public class PlayerControllerr : MonoBehaviour
 
     private void Update()
     {
-        anim.SetFloat("Vertical",2f);
-        anim.SetFloat("Horizontal",2f);
+      //  anim.SetFloat("Vertical",2f);
+       // anim.SetFloat("Horizontal",2f);
 
         Vector3 moveDirection = transform.forward * verticalSpeed;
         

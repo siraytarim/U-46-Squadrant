@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class GetDamage : MonoBehaviour
 {
@@ -27,6 +29,7 @@ public class GetDamage : MonoBehaviour
         if (enemyHealt <= 0)
         {
             Destroy(gameObject);
+            PlayerAttack.Instance.Enemies.Remove(gameObject);
         }
     }
 }
