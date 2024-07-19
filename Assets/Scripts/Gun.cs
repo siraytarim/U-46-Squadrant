@@ -6,7 +6,7 @@ using UnityEngine.VFX;
 
 public class Gun : MonoBehaviour
 {
-    public static Gun Instance; 
+    public static Gun Instance;
     public GameObject muzzle;
     [SerializeField] float range;
     public VisualEffect muzzleEffect;
@@ -23,40 +23,51 @@ public class Gun : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     public void Shoot()
     {
-      //  muzzleEffect.Play();
-
-        StartCoroutine(MoveEfect(PlayerAttack.nearestOBJ.transform));
-
-        //Debug.Log("shooting");
-      
-    }
-    
-    IEnumerator  MoveEfect(Transform target)
-    {
-        while (true)
+        Debug.Log("saldırıldı");
+        muzzleEffect.Play();
+        Vector3 direction = (PlayerAttack.nearestOBJ.transform.position - muzzle.transform.position).normalized;
+       // muzzleEffect.transform.position += direction * 10 * Time.deltaTime;
+        RaycastHit hit;
+        if (Physics.Raycast(muzzleEffect.transform.position, direction, out hit, range))
         {
-            if (target == null)
+            if (hit.collider.CompareTag(("Enemy")))
             {
-                yield break; 
+                Debug.Log("vurdu");
+                hit.collider.GetComponent<GetDamage>().TakeDamage(damage);
+                VisualEffect Muzzle = Instantiate(muzzleEffect, hit.point, Quaternion.LookRotation(hit.normal));
+                //  Destroy(Muzzle, 2f);
+                Debug.DrawLine(muzzle.transform.position, hit.transform.position + direction * range, Color.green, 2f);
             }
-
-            Vector3 direction = (PlayerAttack.nearestOBJ.transform.position - muzzleEffect.transform.position).normalized;
-            muzzle.transform.position += direction * 20 * Time.deltaTime;
-            RaycastHit hit;
-            if (Physics.Raycast(muzzleEffect.transform.position, direction, out hit, range))
-            {
-                if (hit.collider.CompareTag(("Enemy")))
-                {
-                    Debug.Log("vurdu");
-                    GetDamage.Instance.TakeDamage(damage);
-                    Debug.DrawLine(muzzle.transform.position, muzzle.transform.position + direction * range, Color.green, 2f);
-                    yield break;
-                }
-            }
-            yield return null;
         }
-
     }
 }
+    
+/* IEnumerator  MoveEfect(Transform target)
+ {
+     while (true)
+     {
+         if (target == null)
+         {
+             yield break;
+         }
+
+         Vector3 direction = (PlayerAttack.nearestOBJ.transform.position - muzzle.transform.position).normalized;
+         muzzleEffect.transform.position += direction * 20 * Time.deltaTime;
+         RaycastHit hit;
+         if (Physics.Raycast(muzzleEffect.transform.position, direction, out hit, range))
+         {
+             if (hit.collider.CompareTag(("Enemy")))
+             {
+                 Debug.Log("vurdu");
+                 hit.collider.GetComponent<GetDamage>().TakeDamage(damage);
+                 Debug.DrawLine(muzzle.transform.position, hit.transform.position + direction * range, Color.green, 2f);
+                 yield break;
+             }
+         }
+         yield return null;
+     }
+
+ }*/

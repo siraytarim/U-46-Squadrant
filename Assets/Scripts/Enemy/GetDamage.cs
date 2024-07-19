@@ -8,7 +8,8 @@ using UnityEngine.Rendering;
 public class GetDamage : MonoBehaviour
 {
     public static GetDamage Instance;
-    [SerializeField] float enemyHealt;
+    [SerializeField] float enemyHealt; 
+    public int enemyCount;
 
      void Awake()
     {
@@ -22,6 +23,11 @@ public class GetDamage : MonoBehaviour
         }    
     }
 
+    private void Start()
+    {
+        enemyCount = PlayerAttack.Instance.Enemies.Count;
+    }
+
     public void TakeDamage(float hasar)
     {
         enemyHealt -= hasar;
@@ -29,7 +35,10 @@ public class GetDamage : MonoBehaviour
         if (enemyHealt <= 0)
         {
             Destroy(gameObject);
+            enemyCount--;
             PlayerAttack.Instance.Enemies.Remove(gameObject);
+            Debug.Log("çıkartıldı");
         }
+
     }
 }

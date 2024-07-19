@@ -8,9 +8,6 @@ public class PlayerAttack : MonoBehaviour
 {
     public static PlayerAttack Instance;
     [Header("Bullet")]
-    [SerializeField] GameObject bulletPrefab;
-    [SerializeField] float bulletSpeed;
-    [SerializeField] Transform bulletSpawnPoint;
     public float bulletCoolDown;
     
     [Header("Enemy")]
@@ -18,7 +15,7 @@ public class PlayerAttack : MonoBehaviour
     public static bool enemyInattackRange;
     public List<GameObject> Enemies;
     float distance;
-    float nearestDistance = 1000;
+    float nearestDistance = 900;
     public static GameObject nearestOBJ;
     
     [Header("Player")]
@@ -60,16 +57,17 @@ public class PlayerAttack : MonoBehaviour
 
             if (enemyInattackRange)
             {
-                ShootAtEnemy();
+                Gun.Instance.Shoot();
+                ResetAttack();
             }
         }
     }
 
-    void ShootAtEnemy()
+   /* void ShootAtEnemy()
     {
         Gun.Instance.Shoot();
         ResetAttack();
-    }
+    }*/
 
     void ResetAttack()
     {
@@ -86,4 +84,3 @@ public class PlayerAttack : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position,attackRange);
     }
 }
-
