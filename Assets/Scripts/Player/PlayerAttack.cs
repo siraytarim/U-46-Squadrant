@@ -15,7 +15,7 @@ public class PlayerAttack : MonoBehaviour
     public static bool enemyInattackRange;
     public List<GameObject> Enemies;
     float distance;
-    float nearestDistance = 900;
+    float nearestDistance = 1000;
     public static GameObject nearestOBJ;
     
     [Header("Player")]
@@ -40,11 +40,12 @@ public class PlayerAttack : MonoBehaviour
         Enemies.AddRange(foundObjects);
         for (int i = 0; i < Enemies.Count; i++)
         {
-            distance = Vector3.Distance(this.transform.position, Enemies[i].transform.position);
+            distance = Vector3.Distance(transform.position, Enemies[i].transform.position);
             if (distance < nearestDistance)
             {
                 nearestOBJ = Enemies[i];
                 nearestDistance = distance;
+                Debug.Log(nearestOBJ.name);
             }
         }
     }
@@ -76,6 +77,9 @@ public class PlayerAttack : MonoBehaviour
     }
     void AllowShooting()
     {
+        if (Enemies.Count <= 0)
+            hasShoot = true;
+        else
         hasShoot = false;
     }
     private void OnDrawGizmosSelected()

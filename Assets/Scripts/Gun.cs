@@ -30,15 +30,16 @@ public class Gun : MonoBehaviour
         muzzleEffect.Play();
         Vector3 direction = (PlayerAttack.nearestOBJ.transform.position - muzzle.transform.position).normalized;
        // muzzleEffect.transform.position += direction * 10 * Time.deltaTime;
+       muzzleEffect.transform.position = muzzle.transform.position;
         RaycastHit hit;
-        if (Physics.Raycast(muzzleEffect.transform.position, direction, out hit, range))
+        if (Physics.Raycast(muzzle.transform.position, direction, out hit, range))
         {
             if (hit.collider.CompareTag(("Enemy")))
             {
                 Debug.Log("vurdu");
                 hit.collider.GetComponent<GetDamage>().TakeDamage(damage);
-                VisualEffect Muzzle = Instantiate(muzzleEffect, hit.point, Quaternion.LookRotation(hit.normal));
-                //  Destroy(Muzzle, 2f);
+                VisualEffect Muzzle = Instantiate(muzzleEffect, hit.point, Quaternion.LookRotation(direction));
+                  Destroy(Muzzle.gameObject, 2f);
                 Debug.DrawLine(muzzle.transform.position, hit.transform.position + direction * range, Color.green, 2f);
             }
         }

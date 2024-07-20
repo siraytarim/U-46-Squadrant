@@ -30,14 +30,18 @@ public class GetDamage : MonoBehaviour
 
     public void TakeDamage(float hasar)
     {
-        enemyHealt -= hasar;
-        Debug.Log(enemyHealt);
-        if (enemyHealt <= 0)
+        if (gameObject != null)
         {
-            Destroy(gameObject);
-            enemyCount--;
-            PlayerAttack.Instance.Enemies.Remove(gameObject);
-            Debug.Log("çıkartıldı");
+            enemyHealt -= hasar;
+            Debug.Log(enemyHealt);
+            if (enemyHealt <= 0)
+            {
+                PlayerAttack.Instance.Enemies.Remove(gameObject);
+                Destroy(gameObject);
+                enemyCount--;
+
+                Debug.Log("çıkartıldı");
+            }
         }
 
     }
