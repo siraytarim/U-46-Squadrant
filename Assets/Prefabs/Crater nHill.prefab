@@ -260,6 +260,80 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6a739b3959d426a469ec7973bf8c18db, type: 3}
   m_PrefabInstance: {fileID: 3841056588177785796}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4101805834455582487
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7003379987301580184}
+    m_Modifications:
+    - target: {fileID: 2361012028182508921, guid: 55cc257b3013bb8468e4164c210b4208, type: 3}
+      propertyPath: m_Name
+      value: Smoke
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452921717367308096, guid: 55cc257b3013bb8468e4164c210b4208, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.22927
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452921717367308096, guid: 55cc257b3013bb8468e4164c210b4208, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.22927
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452921717367308096, guid: 55cc257b3013bb8468e4164c210b4208, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.22927
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452921717367308096, guid: 55cc257b3013bb8468e4164c210b4208, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452921717367308096, guid: 55cc257b3013bb8468e4164c210b4208, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452921717367308096, guid: 55cc257b3013bb8468e4164c210b4208, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452921717367308096, guid: 55cc257b3013bb8468e4164c210b4208, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452921717367308096, guid: 55cc257b3013bb8468e4164c210b4208, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452921717367308096, guid: 55cc257b3013bb8468e4164c210b4208, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452921717367308096, guid: 55cc257b3013bb8468e4164c210b4208, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452921717367308096, guid: 55cc257b3013bb8468e4164c210b4208, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452921717367308096, guid: 55cc257b3013bb8468e4164c210b4208, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452921717367308096, guid: 55cc257b3013bb8468e4164c210b4208, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 55cc257b3013bb8468e4164c210b4208, type: 3}
+--- !u!4 &7017145538966288471 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6452921717367308096, guid: 55cc257b3013bb8468e4164c210b4208, type: 3}
+  m_PrefabInstance: {fileID: 4101805834455582487}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4399268422846438477
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -548,7 +622,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 26026d9f2ddb2c049b8e3d96d0f64d60, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7017145538966288471}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26026d9f2ddb2c049b8e3d96d0f64d60, type: 3}
 --- !u!4 &7003379987301580184 stripped
