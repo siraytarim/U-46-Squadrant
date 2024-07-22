@@ -60,9 +60,11 @@ public class PlayerAttack : MonoBehaviour
             {
                 Gun.Instance.Shoot();
                 ResetAttack();
+                PlayerHealth.Instance.GetDamage(1);
             }
         }
     }
+    
 
    /* void ShootAtEnemy()
     {

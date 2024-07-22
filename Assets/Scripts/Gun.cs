@@ -37,7 +37,7 @@ public class Gun : MonoBehaviour
             if (hit.collider.CompareTag(("Enemy")))
             {
                 Debug.Log("vurdu");
-                hit.collider.GetComponent<GetDamage>().TakeDamage(damage);
+                hit.collider.GetComponent<GetDamage>().getDamage(damage);
                 VisualEffect Muzzle = Instantiate(muzzleEffect, hit.point, Quaternion.LookRotation(direction));
                   Destroy(Muzzle.gameObject, 2f);
                 Debug.DrawLine(muzzle.transform.position, hit.transform.position + direction * range, Color.green, 2f);

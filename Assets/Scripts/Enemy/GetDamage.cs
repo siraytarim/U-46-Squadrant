@@ -28,7 +28,7 @@ public class GetDamage : MonoBehaviour
         enemyCount = PlayerAttack.Instance.Enemies.Count;
     }
 
-    public void TakeDamage(float hasar)
+    public void getDamage(float hasar)
     {
         if (gameObject != null)
         {
