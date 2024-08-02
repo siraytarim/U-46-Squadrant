@@ -8,6 +8,9 @@ public class PlayerAttack : MonoBehaviour
 {
     public static PlayerAttack Instance;
     [Header("Bullet")]
+    [SerializeField] GameObject bulletPrefab;
+    [SerializeField] float bulletSpeed;
+    [SerializeField] Transform bulletSpawnPoint;
     public float bulletCoolDown;
     
     [Header("Enemy")]
@@ -58,19 +61,23 @@ public class PlayerAttack : MonoBehaviour
 
             if (enemyInattackRange)
             {
+<<<<<<< Updated upstream
                 Gun.Instance.Shoot();
                 ResetAttack();
                 PlayerHealth.Instance.GetDamage(1);
+=======
+                ShootAtEnemy();
+>>>>>>> Stashed changes
             }
         }
     }
     
 
-   /* void ShootAtEnemy()
+    void ShootAtEnemy()
     {
         Gun.Instance.Shoot();
         ResetAttack();
-    }*/
+    }
 
     void ResetAttack()
     {
@@ -90,3 +97,4 @@ public class PlayerAttack : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position,attackRange);
     }
 }
+
